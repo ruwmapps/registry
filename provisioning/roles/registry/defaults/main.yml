@@ -1,4 +1,4 @@
-certbot_email: mail@deworker.pro
+certbot_email: mail@smalvi.ru
 certbot_hosts:
-    - registry.demo-auction.deworker.pro
-    - cache-registry.demo-auction.deworker.pro
+    - registry.smalvi.ru
+    - cache-registry.smalvi.ru
