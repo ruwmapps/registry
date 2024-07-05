@@ -23,6 +23,7 @@ deploy:
 	scp -P ${PORT} -r docker deploy@${HOST}:registry/docker
 	scp -P ${PORT} ${HTPASSWD_FILE} deploy@${HOST}:registry/htpasswd
 	ssh deploy@${HOST} -p ${PORT} 'cd registry && echo "COMPOSE_PROJECT_NAME=registry" >> .env'
+	sudo chmod 666 /var/run/docker.sock
 	ssh deploy@${HOST} -p ${PORT} 'cd registry && docker compose down --remove-orphans'
 	ssh deploy@${HOST} -p ${PORT} 'cd registry && docker compose pull'
 	ssh deploy@${HOST} -p ${PORT} 'cd registry && docker compose up -d'

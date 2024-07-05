@@ -15,12 +15,16 @@
 -   name: Up certbot standalone Apache
     shell: "docker run -d --name apache -v /var/www/html:/usr/local/apache2/htdocs/ -p 80:80 httpd:2.4"
     when: port_check.failed == true
+    ignore_errors: yes
 
 -   name: Generate new certificate
     shell: "certbot certonly --noninteractive --agree-tos --email {{ certbot_email }} -d {{ item.item }}"
     with_items: "{{ letsencrypt_certs.results }}"
     when: not item.stat.exists
+    ignore_errors: yes
 
 -   name: Down certbot Apache
     shell: "docker rm -f apache"
     when: port_check.failed == true
+    ignore_errors: yes
+
